@@ -64,5 +64,6 @@ sizeButton.addEventListener('click', () => {
 createGrid(16);
 
 clearButton.addEventListener('click', () => {
+    eraserActive = false; 
     createGrid(currentSize);
    });
