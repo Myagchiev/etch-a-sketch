@@ -2,54 +2,57 @@
 const grid = document.getElementById('grid');
 const sizeButton = document.getElementById('sizeBtn');
 const clearButton = document.getElementById('clearBtn');
+const toggleButton = document.getElementById('toggleColor');
 
-// Функция для создания сетки
+
+let useRandomColor = false; 
+
 function createGrid(size) {
-    grid.innerHTML = ''; // Очистка сетки
+    grid.innerHTML = '';
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     
     for (let i = 0; i < size * size; i++) {
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-        cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = 'black'; // Изменение цвета ячейки при наведении
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.addEventListener('mouseover', () => {
+            if (useRandomColor) {
+                box.style.backgroundColor = getRandomRGB();
+            } else {
+                box.style.backgroundColor = 'black';
+            }
         });
-        grid.appendChild(cell);
+
+        grid.appendChild(box);
     }
 }
 
+function getRandomRGB() {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
+toggleButton.addEventListener('click', () => {
+    useRandomColor = !useRandomColor;
+    toggleButton.textContent = useRandomColor ? 'Переключить на черный' : 'Переключить на RGB';
+});
 
-// Событие для кнопки изменения сетки
+let currentSize = 16;
+
 sizeButton.addEventListener('click', () => {
     const newSize = prompt("Введите размер сетки (1-100):");
     if (newSize > 0 && newSize <= 100) {
+        currentSize = newSize;
         createGrid(newSize);
     } else {
         alert("Пожалуйста, введите допустимый размер сетки.");
     }
 });
 
-// Создание первоначальной сетки
 createGrid(16);
 
-// Событие для кнопки очистки
 clearButton.addEventListener('click', () => {
-    createGrid(100); // Изменение цвета ячейки при наведении
+    createGrid(currentSize);
    });
-
-
-    // rgbButton.addEventListener('click', () => {
-    //     function randomColor(min, max) {
-    //         return Math.floor(Math.random() * (max - min)) + min;
-    //       }
-    //       content.onmouseover = function(event) {
-    //         console.log(event.target);
-    //         event.target.style.backgroundColor = `rgb(${randomColor(0 , 256)}, ${randomColor(0 , 256)}, ${randomColor(0 , 256)})`;
-    //       }
-    //       content.onmouseout = function(event) {
-    //         console.log(event.target);
-    //         event.target.style.backgroundColor = '';
-    //       }
-    // })

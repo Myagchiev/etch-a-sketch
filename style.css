@@ -1,37 +1,48 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(141, 141, 141);
+  margin: 0;
+ }
   
-  .container {
-    text-align: center;
-  }
+.container {
+  text-align: center;
+ }
   
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
-    width: 640px;
-    height: 640px;
-    border: 2px solid #333;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  width: 640px;
+  height: 640px;
+  border: 2px solid #333333;
+  box-shadow: 0px -1px 22px 1px rgba(0,0,0,0.74);
+ }
   
-  .cell {
-    border: 1px solid #ccc;
-    background-color: #fff;
-  }
+.box {
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+ }
   
-  .cell:hover {
-    background-color: #ccc;
-  }
+.box:hover {
+  background-color: #cccccc;
+ }
   
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
+button {
+  margin: 20px 10px 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.74);
+  transition: 100ms;
+  cursor: pointer;
+ }
+
+button:active {
+  transform: scale(0.97);
+ }
+
+#toggleColor {
+  width: 250px;
+}
